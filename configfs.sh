@@ -39,12 +39,13 @@ ln -s functions/uvc.0/control/header/h functions/uvc.0/control/class/fs # fullsp
 ln -s functions/uvc.0/control/header/h functions/uvc.0/control/class/ss # superspeed
 
 mkdir -p functions/uvc.0/streaming/mjpeg/m/720p
-echo 5000000 > functions/uvc.0/streaming/mjpeg/m/720p/dwFrameInterval
+echo 166666 > functions/uvc.0/streaming/mjpeg/m/720p/dwFrameInterval # 1/60fps*1000*1000
 echo 1280 > functions/uvc.0/streaming/mjpeg/m/720p/wWidth
 echo 720 > functions/uvc.0/streaming/mjpeg/m/720p/wHeight
-echo 10000000 > functions/uvc.0/streaming/mjpeg/m/720p/dwMinBitRate
-echo 696254464 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxBitRate
-echo 7372800 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxVideoFrameBufferSize
+echo 17825792 > functions/uvc.0/streaming/mjpeg/m/720p/dwMinBitRate # default is 17000000 (17Mbps, 17*1024*1024)
+echo 26214400 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxBitRate # max is 25000000 (25Mbps, 25*1024*1024)
+echo 1843200 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxVideoFrameBufferSize # 1280*720*2 (not sure why is 2)
+# V2 module hardware spec can be found here: https://picamera.readthedocs.io/en/latest/fov.html
 
 # Create headers
 mkdir -p functions/uvc.0/streaming/header/h
