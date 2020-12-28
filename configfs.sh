@@ -38,14 +38,22 @@ mkdir -p functions/uvc.0/control/header/h
 ln -s functions/uvc.0/control/header/h functions/uvc.0/control/class/fs # fullspeed
 ln -s functions/uvc.0/control/header/h functions/uvc.0/control/class/ss # superspeed
 
+# V2 module hardware spec can be found at the bottom of this page, section 6.3: https://picamera.readthedocs.io/en/latest/fov.html
+#mkdir -p functions/uvc.0/streaming/mjpeg/m/1080p
+#echo 333333 > functions/uvc.0/streaming/mjpeg/m/1080p/dwFrameInterval # 1/30fps*1000*1000*10 (not sure why needs *10)
+#echo 1920 > functions/uvc.0/streaming/mjpeg/m/1080p/wWidth
+#echo 1080 > functions/uvc.0/streaming/mjpeg/m/1080p/wHeight
+#echo 17825792 > functions/uvc.0/streaming/mjpeg/m/1080p/dwMinBitRate # default is 17000000 (17Mbps, 17*1024*1024)
+#echo 26214400 > functions/uvc.0/streaming/mjpeg/m/1080p/dwMaxBitRate # max is 25000000 (25Mbps, 25*1024*1024)
+#echo 4147200 > functions/uvc.0/streaming/mjpeg/m/1080p/dwMaxVideoFrameBufferSize # 1920*1080*2 (not sure why is 2, maybe YUV420?)
+
 mkdir -p functions/uvc.0/streaming/mjpeg/m/720p
-echo 166666 > functions/uvc.0/streaming/mjpeg/m/720p/dwFrameInterval # 1/60fps*1000*1000
+echo 166666 > functions/uvc.0/streaming/mjpeg/m/720p/dwFrameInterval # 1/60fps*1000*1000*10 (not sure why needs *10)
 echo 1280 > functions/uvc.0/streaming/mjpeg/m/720p/wWidth
 echo 720 > functions/uvc.0/streaming/mjpeg/m/720p/wHeight
 echo 17825792 > functions/uvc.0/streaming/mjpeg/m/720p/dwMinBitRate # default is 17000000 (17Mbps, 17*1024*1024)
 echo 26214400 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxBitRate # max is 25000000 (25Mbps, 25*1024*1024)
-echo 1843200 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxVideoFrameBufferSize # 1280*720*2 (not sure why is 2)
-# V2 module hardware spec can be found here: https://picamera.readthedocs.io/en/latest/fov.html
+echo 1843200 > functions/uvc.0/streaming/mjpeg/m/720p/dwMaxVideoFrameBufferSize # 1280*720*2 (not sure why is 2, maybe YUV420?)
 
 # Create headers
 mkdir -p functions/uvc.0/streaming/header/h
